@@ -1,11 +1,11 @@
 from pathlib import Path
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader, PyPDFLoader
 
 
 def load_pdf(path):
     """Load one PDF and attach metadata to every page."""
     path = Path(path)
-    loader = PyPDFLoader(str(path))
+    loader = PyMuPDFLoader(str(path))
     pages = loader.load()
 
     for page in pages:
@@ -34,5 +34,6 @@ def load_all_papers(folder="data"):
 if __name__ == "__main__":
     docs = load_all_papers()
     print(f"\nTotal pages: {len(docs)}")
+    print(len(docs))
     if docs:
-        print("\n" + str(docs[0].metadata))
+        print("\n" + str(docs[0].page_content[:500]) + "\n...")
