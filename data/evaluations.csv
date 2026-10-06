@@ -1,0 +1,8 @@
+id,question,type,expected_paper,expected_page
+1,"What is chain-of-thought prompting?",answerable,chain_of_thought,2
+2,"what is an attention function ?",answerable ,attention_is_all_need,3
+3,"what is self attention",answerable,attention_is_all_need,2
+4,"what is capital of France",unanswerable,,
+5,"who is  the prime minister of Inida",unanswerable,,
+6,"does transformer use chain of thought prompting",answerable,,
+7,"does instruct gpt make mistakes",answerable,,

@@ -6,7 +6,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 def chunk_papers(docs):
     """Split a list of page Documents into chunks."""
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1200, chunk_overlap=400)
     chunks = splitter.split_documents(docs)
     #creating unique chunk ids for each chunk
     notebook={}
