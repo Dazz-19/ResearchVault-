@@ -1,5 +1,6 @@
 from src.embeddings import get_embeddings
 from langchain_chroma import Chroma 
+import pandas as pd
 
 DB="chroma_db"
 
