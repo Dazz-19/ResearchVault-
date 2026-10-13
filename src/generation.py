@@ -104,5 +104,5 @@ if __name__ == "__main__":
             print(f"  - {m['document_id']} | p.{m['page'] + 1} | {m['chunk_id']} | {score:.3f}")
         print()
 
-        # Store the original question and the answer, never the retrieved chunks
+        
         history.append({"user": question, "assistant": result["answer"]})

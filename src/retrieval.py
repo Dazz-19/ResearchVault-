@@ -3,7 +3,7 @@ global Store
 Store=None
 
 
-def get_retrieval_results(question,k=5,filter_paper=None):
+def get_retrieval_results(question,k=10,filter_paper=None):
     """Return the top-k retrieval results for a given question."""
     global Store
     if Store is None:
