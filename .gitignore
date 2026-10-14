@@ -7,3 +7,8 @@ data/papers/*.pdf
 .DS_Store
 CHECKLIST.md
 README.md
+evaluation_results.txt
+evaluation_results_reranker-no_rewriting.txt
+evaluation_results_query_rewritten.txt
+results_reranker_no_rewriting_new_model.txt
+evaluation_results_reranker_with_rewriting.txt

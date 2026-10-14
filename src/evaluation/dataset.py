@@ -1,10 +1,10 @@
 import json
 from collections import Counter
 
-# Single source of truth for what is allowed in the dataset.
+
 ALLOWED_CATEGORIES = {"answerable", "unanswerable", "multi_paper", "trick", "ambiguous"}
 
-# Must equal metadata["document_id"], which is the PDF filename without ".pdf".
+
 KNOWN_PAPERS = {
     "NIPS-2017-attention-is-all-you-need-Paper",
     "chain_of_though_prmpt",

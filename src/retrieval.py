@@ -18,10 +18,15 @@ def get_retrieval_results(question,k=10,filter_paper=None):
 
 
 
-if __name__ == "__main__":
-    question = "What is a transformer model?"
-    results = get_retrieval_results(question, k=5)
-    for doc, score in results:
-        m = doc.metadata
-        print(f"Score: {score:.4f} | Document: {m['document_id']} | Page: {m['page'] + 1} | Chunk: {m['chunk_id']}")
-        print(f"Content: {doc.page_content[:200]!r}\n")
+
+#if __name__ == "__main__":
+    # question = "What is a transformer model?"
+    # results = get_retrieval_results(question, k=5)
+    # output=convert_retrieved_results(results)
+    # print(output)
+    # test1=test_cases[0]["relevant_pages"]
+    # print(convert_test_relevant_questions(test1))
+    # for doc, score in results:
+    #     m = doc.metadata
+    #     print(f"Score: {score:.4f} | Document: {m['document_id']} | Page: {m['page'] + 1} | Chunk: {m['chunk_id']}")
+    #     print(f"Content: {doc.page_content[:200]!r}\n")
