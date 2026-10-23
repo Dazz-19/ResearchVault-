@@ -56,3 +56,6 @@ def ndcg_at_k(retrieved, relevant, k):
     ideal_hits = min(len(relevant_set), k)
     idcg = sum(1 / math.log2(rank + 1) for rank in range(1, ideal_hits + 1))
     return dcg / idcg        
+
+
+
