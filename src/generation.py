@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
-from src.retrieval import get_retrieval_results
+from src.retrieval import retrieve_with_rerank
 from src.prompts import SYSTEM_PROMPT_TEMPLATE, QUERY_REWRITING_PROMPT
 
 load_dotenv(override=True)
@@ -53,28 +53,19 @@ def rewrite_question(question, history):
     return rewritten if rewritten else question
 
 
-def answer_question(question, history, k=5, filter_paper=None):
-    """Rewrite, retrieve, then answer from the retrieved passages only."""
+def generate_from_results(question, results,history=None):
+    if history is None:
+        history = []
+
     rewritten_question = rewrite_question(question, history)
-    results = get_retrieval_results(
-        rewritten_question, k=k, filter_paper=filter_paper
-    )
-
-    if not results:
-        return {
-            "answer": NO_EVIDENCE,
-            "rewritten_question": rewritten_question,
-            "results": [],
-        }
-
     context = build_context(results)
+
     system_prompt = SYSTEM_PROMPT_TEMPLATE.format(context=context)
-    response = llm.invoke(
-        [
-            SystemMessage(content=system_prompt),
-            HumanMessage(content=rewritten_question),
-        ]
-    )
+
+    response = llm.invoke([
+        SystemMessage(content=system_prompt),
+        HumanMessage(content=rewritten_question)
+    ])
 
     return {
         "answer": response.content,
@@ -83,26 +74,3 @@ def answer_question(question, history, k=5, filter_paper=None):
     }
 
 
-if __name__ == "__main__":
-    history = []
-    print("ResearchVault chat. Type 'quit' to exit.\n")
-
-    while True:
-        question = input("You: ").strip()
-        if question.lower() in ("quit", "exit"):
-            break
-        if not question:
-            continue
-
-        result = answer_question(question, history)
-
-        print(f"\n[rewritten] {result['rewritten_question']}")
-        print(f"\nAssistant: {result['answer']}\n")
-        print("Sources:")
-        for doc, score in result["results"]:
-            m = doc.metadata
-            print(f"  - {m['document_id']} | p.{m['page'] + 1} | {m['chunk_id']} | {score:.3f}")
-        print()
-
-        
-        history.append({"user": question, "assistant": result["answer"]})
