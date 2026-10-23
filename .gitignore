@@ -12,3 +12,7 @@ evaluation_results_reranker-no_rewriting.txt
 evaluation_results_query_rewritten.txt
 results_reranker_no_rewriting_new_model.txt
 evaluation_results_reranker_with_rewriting.txt
+results
+judge_rubric.md
+data/*.pdf
+notebooks
