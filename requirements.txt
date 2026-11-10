@@ -1,0 +1,38 @@
+ResearchVault dependencies
+
+Install with: pip install -r requirements.txt
+
+These are direct project dependencies based on the current ResearchVault
+
+stack. Versions are intentionally unpinned because the exact working
+
+environment/package versions have not yet been verified.
+
+RAG framework and integrations
+
+langchain langchain-community langchain-openai langchain-huggingface
+langchain-chroma
+
+Vector database
+
+chromadb
+
+PDF loading
+
+pypdf
+
+Embeddings
+
+sentence-transformers
+
+API configuration
+
+python-dotenv
+
+Application interface / evaluation dashboard
+
+gradio
+
+Evaluation and data handling (if imported by your evaluation modules)
+
+pandas pydantic
