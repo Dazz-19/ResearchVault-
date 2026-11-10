@@ -4,7 +4,7 @@ import pandas as pd
 
 DB="chroma_db"
 
-def create_vectorstore(chunks):
+def create_vectorstore(chunksp):
     ids=[chunk.metadata["chunk_id"] for chunk in chunks]
     model=get_embeddings()
     """Create a vectorstore from the chunks."""
@@ -20,15 +20,13 @@ def load_vectorstore():
 
 
 if __name__ == "__main__":
-    # from src.chunking import chunk_papers
-    # from src.ingestion import load_all_papers
-    # docs = load_all_papers()
-    # chunks = chunk_papers(docs)
-    # vectors = create_vectorstore(chunks)
-
-    vectorstore = load_vectorstore()
-    vectors = vectorstore.similarity_search("What is a transformer model?", k=1)
-    print(vectors[0].page_content)
-    print(vectors[0].metadata["document_id"])
-    print(vectors[0].metadata["chunk_id"])
-    print(vectors[0].metadata["page"])
+    from src.chunking import chunk_papers
+    from src.ingestion import load_all_papers
+    docs = load_all_papers()
+    chunks = chunk_papers(docs,500,200)
+    vector_store1=load_vectorstore(1000,400)
+    print(vector_store1._collection.count())
+    vs=create_vectorstore(chunks,500,200)
+    vs2=load_vectorstore(500,200)
+    print(vs2._collection.count())
+    

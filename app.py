@@ -100,7 +100,7 @@ with gr.Blocks(title="ResearchVault Evaluation") as demo:
         with gr.Column(scale=1):
             judge_chart = gr.BarPlot(x="Metric", y="Score", y_lim=[1, 5],
                                      title="Average judge scores", height=350)
-    judge_table = gr.Dataframe(label="Per-question answers and feedback (weakest first)", wrap=True)
+    judge_table = gr.Dataframe(label="Per-question answers and feedback (worst first)", wrap=True)
 
     retrieval_btn.click(fn=run_retrieval_eval, outputs=[retrieval_cards, retrieval_table])
     judge_btn.click(fn=run_judge_eval, outputs=[judge_cards, judge_chart, judge_table])
